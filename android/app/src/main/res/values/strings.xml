@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Destruction</string>
+    <string name="title_activity_main">Destruction</string>
+    <string name="package_name">app.destruction.api</string>
+    <string name="custom_url_scheme">app.destruction.api</string>
+</resources>
