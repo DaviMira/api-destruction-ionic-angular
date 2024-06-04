@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Product Data</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="onSearchChange($event)"></ion-searchbar>
+  <ion-button (click)="onSearchClick()">Search</ion-button>
+  
+  <ion-list *ngIf="apiResponse">
+    <ion-item *ngFor="let product of apiResponse.products">
+      <ion-label>
+        <h2>{{ product.productName }}</h2>
+        <p>{{ product.consoleName }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-spinner *ngIf="!apiResponse"></ion-spinner>
+</ion-content>
