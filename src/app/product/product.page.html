@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+  <p>{{ loading }}</p>
   <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="onSearchChange($event)"></ion-searchbar>
   <ion-button (click)="onSearchClick()">Search</ion-button>
   
@@ -16,5 +17,5 @@
       </ion-label>
     </ion-item>
   </ion-list>
-  <ion-spinner *ngIf="!apiResponse"></ion-spinner>
+  <ion-spinner *ngIf="loading"></ion-spinner>
 </ion-content>
