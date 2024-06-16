@@ -5,9 +5,11 @@
 </ion-header>
 
 <ion-content>
-  <p>{{ loading }}</p>
+  <!--p>{{ loading }}</p-->
   <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="onSearchChange($event)"></ion-searchbar>
   <ion-button (click)="onSearchClick()">Search</ion-button>
+  <ion-button (click)="onViewHistoryClick()">Ver Histórico</ion-button>
+  <ion-button (click)="clearProducts()">Limpar</ion-button>
   
   <ion-list *ngIf="apiResponse">
     <ion-item *ngFor="let product of apiResponse.products">
