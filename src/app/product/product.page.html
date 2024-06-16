@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Product Data</ion-title>
+    <ion-title>Produtos de Coleção</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <!--p>{{ loading }}</p-->
   <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="onSearchChange($event)"></ion-searchbar>
-  <ion-button (click)="onSearchClick()">Search</ion-button>
+  <ion-button (click)="onSearchClick()">Buscar</ion-button>
   <ion-button (click)="onViewHistoryClick()">Ver Histórico</ion-button>
   <ion-button (click)="clearProducts()">Limpar</ion-button>
 
