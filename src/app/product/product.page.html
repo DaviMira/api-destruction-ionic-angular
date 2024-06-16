@@ -10,7 +10,11 @@
   <ion-button (click)="onSearchClick()">Search</ion-button>
   <ion-button (click)="onViewHistoryClick()">Ver Histórico</ion-button>
   <ion-button (click)="clearProducts()">Limpar</ion-button>
-  
+
+  <div *ngIf="displayTitle">
+    <h3>{{ displayTitle }}</h3>
+  </div>
+
   <ion-list *ngIf="apiResponse">
     <ion-item *ngFor="let product of apiResponse.products">
       <ion-label>

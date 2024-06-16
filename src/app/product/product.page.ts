@@ -15,17 +15,18 @@ export class ProductPage implements OnInit {
   searchQuery: string = '';
   private searchSubject: Subject<string> = new Subject();
   loading: boolean = false;
+  displayTitle: string = '';
 
   constructor(
-    private apiService: ApiService, 
+    private apiService: ApiService,
     private dbService: DatabaseService,
-    private cdr: ChangeDetectorRef, 
+    private cdr: ChangeDetectorRef,
     private ngZone: NgZone
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.dbService.initializeDatabase();
-    
+
     this.searchSubject.pipe(
       debounceTime(2000),
       distinctUntilChanged()
@@ -51,11 +52,12 @@ export class ProductPage implements OnInit {
     if (query.trim()) {
       this.setLoading(true);
       this.cdr.detectChanges();
-      
+
       this.apiService.getProductData(query).toPromise()
         .then(response => {
           if (response?.validate()) {
             this.apiResponse = response;
+            this.displayTitle = 'Resultados';
             this.saveProducts(response.products);
             this.setLoading(false);
             this.cdr.detectChanges();
@@ -75,7 +77,7 @@ export class ProductPage implements OnInit {
 
   private saveProducts(products: Product[]): void {
     products.forEach(product => {
-      console.log("saveProducts.product: ",)
+      console.log("saveProducts.product: ", product);
       this.dbService.addProduct(product).catch(error => {
         console.error('Error saving product', error);
       });
@@ -85,6 +87,7 @@ export class ProductPage implements OnInit {
   onViewHistoryClick(): void {
     this.dbService.getProducts().then(products => {
       this.apiResponse = new ApiResponse('success', products);
+      this.displayTitle = 'Histórico';
       this.cdr.detectChanges();
     }).catch(error => {
       console.error('Error fetching history', error);
@@ -93,6 +96,7 @@ export class ProductPage implements OnInit {
 
   clearProducts(): void {
     this.apiResponse = null;
+    this.displayTitle = '';
     this.cdr.detectChanges();
   }
 
